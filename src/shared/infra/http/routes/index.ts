@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import restaurantsRouter from './restaurants.routes';
+import restaurantsRouter from '@modules/restaurants/infra/http/routes/restaurants.routes';
 
 const routes = Router();
 
