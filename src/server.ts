@@ -1,10 +1,13 @@
-import express from 'express';
+import express, { json } from 'express';
+import routes from './routes';
+
+import './database';
 
 const app = express();
 
-app.get('/', (request, response) => {
-  return response.json({ message: 'initiated' });
-});
+app.use(json());
+
+app.use(routes);
 
 app.listen(3333, () => {
   console.log('Iniciado');
