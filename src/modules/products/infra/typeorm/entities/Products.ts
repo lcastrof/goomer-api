@@ -7,7 +7,6 @@ import {
   Column,
   ManyToOne,
 } from 'typeorm';
-import OrdersProducts from '@modules/orders/infra/typeorm/entities/OrdersProducts';
 import Restaurant from '@modules/restaurants/infra/typeorm/entities/Restaurant';
 
 @Entity('products')
@@ -21,8 +20,17 @@ class Product {
   @Column('decimal')
   price: number;
 
-  @Column('int')
-  quantity: number;
+  @Column()
+  category: string;
+
+  @Column('boolean')
+  promotion: boolean;
+
+  @Column()
+  promotion_description: string;
+
+  @Column('decimal')
+  promotion_price: number;
 
   @ManyToOne(() => Restaurant)
   @JoinColumn({ name: 'restaurant_id' })
@@ -30,8 +38,6 @@ class Product {
 
   @Column('int')
   restaurant_id: number;
-
-  orders_products: OrdersProducts[];
 
   @CreateDateColumn()
   created_at: Date;
