@@ -1,0 +1,17 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "docker",
+  "database": "goomer",
+  "entities": [
+    "./src/modules/**/infra/typeorm/entities/*.ts"
+  ],
+ "migrations": [
+    "src/shared/infra/database/migrations/*.ts"
+ ],
+ "cli": {
+   "migrationsDir": "src/shared/infra/database/migrations"
+ }
+}
