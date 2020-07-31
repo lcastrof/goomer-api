@@ -1,3 +1,4 @@
+import AppError from '@shared/errors/AppError';
 import Product from '../infra/typeorm/entities/Products';
 import ProductsRepository from '../infra/typeorm/repositories/ProductsRepository';
 
@@ -26,7 +27,7 @@ export default class CreateProductsService {
     const productAlreadyExists = await productsRepository.findByName(name);
 
     if (productAlreadyExists) {
-      throw new Error('Product already registered');
+      throw new AppError('Product already registered');
     }
 
     const product = await productsRepository.create({

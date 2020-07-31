@@ -1,3 +1,4 @@
+import AppError from '@shared/errors/AppError';
 import Restaurant from '../infra/typeorm/entities/Restaurant';
 import RestaurantsRepository from '../infra/typeorm/repositories/RestaurantsRepository';
 
@@ -9,7 +10,7 @@ export default class ListRestaurantsService {
       const restaurant = await restaurantsRepository.findById(id);
 
       if (!restaurant) {
-        throw new Error('Invalid id');
+        throw new AppError('Invalid id');
       }
 
       return restaurant;

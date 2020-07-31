@@ -1,3 +1,4 @@
+import AppError from '@shared/errors/AppError';
 import Customer from '../infra/typeorm/entities/Customer';
 import CustomersRepository from '../infra/typeorm/repositories/CustomersRepository';
 
@@ -8,7 +9,7 @@ export default class DeleteCustomerService {
     const customer = await customersRepository.findById(id);
 
     if (!customer) {
-      throw new Error('Invalid ID');
+      throw new AppError('Invalid ID');
     }
 
     await customersRepository.delete(customer);

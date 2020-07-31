@@ -1,3 +1,4 @@
+import AppError from '@shared/errors/AppError';
 import Product from '../infra/typeorm/entities/Products';
 import ProductsRepository from '../infra/typeorm/repositories/ProductsRepository';
 
@@ -8,7 +9,7 @@ export default class DeleteProductsService {
     const product = await productsRepository.findById(id);
 
     if (!product) {
-      throw new Error('Invalid ID');
+      throw new AppError('Invalid ID');
     }
 
     await productsRepository.delete(product);

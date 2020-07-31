@@ -1,3 +1,4 @@
+import AppError from '@shared/errors/AppError';
 import Restaurant from '../infra/typeorm/entities/Restaurant';
 import RestaurantsRepository from '../infra/typeorm/repositories/RestaurantsRepository';
 
@@ -27,7 +28,7 @@ export default class UpdateRestaurantService {
     const restaurant = await restaurantRepository.findById(id);
 
     if (!restaurant) {
-      throw new Error('Invalid ID');
+      throw new AppError('Invalid ID');
     }
 
     if (photo) {

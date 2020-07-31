@@ -1,4 +1,5 @@
 import Restaurant from '@modules/restaurants/infra/typeorm/entities/Restaurant';
+import AppError from '@shared/errors/AppError';
 import RestaurantsRepository from '../infra/typeorm/repositories/RestaurantsRepository';
 
 interface Request {
@@ -21,7 +22,7 @@ export default class CreateRestaurantService {
     const restaurantExists = await restaurantsRepository.findByName(name);
 
     if (restaurantExists) {
-      throw new Error('Restaurant already exists');
+      throw new AppError('Restaurant already exists');
     }
 
     const restaurant = await restaurantsRepository.create({
