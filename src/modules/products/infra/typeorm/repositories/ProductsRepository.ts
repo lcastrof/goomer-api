@@ -10,25 +10,31 @@ export default class ProductsRepository implements IProductsRepository {
     this.ormRepository = getRepository(Product);
   }
 
-  // public async findById(id: number): Promise<Customer | undefined> {
-  //   const customer = this.ormRepository.findOne({
-  //     where: {
-  //       id,
-  //     },
-  //   });
+  public async findAll(): Promise<Product[]> {
+    const products = await this.ormRepository.find();
 
-  //   return customer;
-  // }
+    return products;
+  }
 
-  // public async findByEmail(email: string): Promise<Customer | undefined> {
-  //   const customer = this.ormRepository.findOne({
-  //     where: {
-  //       email,
-  //     },
-  //   });
+  public async findById(id: number): Promise<Product | undefined> {
+    const product = await this.ormRepository.findOne({
+      where: {
+        id,
+      },
+    });
 
-  //   return customer;
-  // }
+    return product;
+  }
+
+  public async findByName(name: string): Promise<Product | undefined> {
+    const product = await this.ormRepository.findOne({
+      where: {
+        name,
+      },
+    });
+
+    return product;
+  }
 
   public async create({
     restaurant_id,
@@ -54,7 +60,7 @@ export default class ProductsRepository implements IProductsRepository {
     return product;
   }
 
-  // public async delete(customer: Customer): Promise<void> {
-  //   await this.ormRepository.delete(customer);
-  // }
+  public async delete(product: Product): Promise<void> {
+    await this.ormRepository.delete(product);
+  }
 }

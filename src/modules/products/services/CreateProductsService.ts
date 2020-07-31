@@ -23,6 +23,12 @@ export default class CreateProductsService {
   }: Request): Promise<Product> {
     const productsRepository = new ProductsRepository();
 
+    const productAlreadyExists = await productsRepository.findByName(name);
+
+    if (productAlreadyExists) {
+      throw new Error('Product already registered');
+    }
+
     const product = await productsRepository.create({
       restaurant_id,
       name,
